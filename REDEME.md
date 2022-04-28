@@ -45,10 +45,13 @@ import "ant-design-vue/dist/antd.css";
 ```
 pnpm i -D unplugin-auto-import
 ```
-# 配置eslint pretter
+
+# 配置 eslint pretter
+
 ```
 pnpm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-vue @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
 ```
+
 eslint: ESLint 的核心代码
 
 prettier：prettier 插件的核心代码
@@ -62,6 +65,9 @@ eslint-plugin-vue：包含常用的 vue 规范
 @typescript-eslint/parser：ESLint 的解析器，用于解析 typescript，从而检查和规范 Typescript 代码
 
 @typescript-eslint/eslint-plugin：包含了各类定义好的检测 Typescript 代码的规范
-————————————————
-版权声明：本文为CSDN博主「huoyou123」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_43404937/article/details/122589337
+
+# husky 和 lint-staged 构建代码工作流
+
+```
+pnpm i husky lint-staged @commitlint/cli @commitlint/config-conventional -D
+```
