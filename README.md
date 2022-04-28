@@ -1,16 +1,110 @@
-# Vue 3 + TypeScript + Vite
+# 使用 vite 指定模板下载
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+```
+pnpm create vite my-vue-app -- -- template vue-ts
+```
 
-## Recommended IDE Setup
+# 按需引入组件
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+```
+pnpm i unplugin-vue-components -D
+```
 
-## Type Support For `.vue` Imports in TS
+# 安装 ant-design-vue
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+```
+pnpm install ant-design-vue --save
+```
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+```
+// vite.config.js
+import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+export default {
+  plugins: [
+    /* ... */
+    Components({
+      resolvers: [AntDesignVueResolver()],
+      // 使用ts建议设置为src/auto-import.d.ts
+      dts: "src/auto-imports.d.ts",
+    }),
+  ],
+};
+
+// main.ts
+import "ant-design-vue/dist/antd.css";
+```
+
+# 自动导入 vue3 的 hooks，借助 unplugin-auto-import/vite 插件
+
+## 支持 vue, vue-router, vue-i18n, @vueuse/head, @vueuse/core 等自动引入
+
+安装插件
+
+```
+pnpm i -D unplugin-auto-import
+```
+
+# 配置 eslint pretter
+
+```
+pnpm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-vue @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
+```
+
+eslint: ESLint 的核心代码
+
+prettier：prettier 插件的核心代码
+
+eslint-config-prettier：解决 ESLint 中的样式规范和 prettier 中样式规范的冲突，以 prettier 的样式规范为准，使 ESLint 中的样式规范自动失效
+
+eslint-plugin-prettier：将 prettier 作为 ESLint 规范来使用
+
+eslint-plugin-vue：包含常用的 vue 规范
+
+@typescript-eslint/parser：ESLint 的解析器，用于解析 typescript，从而检查和规范 Typescript 代码
+
+@typescript-eslint/eslint-plugin：包含了各类定义好的检测 Typescript 代码的规范
+
+# husky 和 lint-staged 构建代码工作流
+
+```
+pnpm i husky lint-staged @commitlint/cli @commitlint/config-conventional -D
+
+pnpx huskyinit
+
+<!-- 修改 ./husky/pre-commit 钩子 -->
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm lint-staged
+
+<!-- 修改 ./husky/commit-msg -->
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpx --no-install commitlint --config .commitlintrc.js --edit $1
+
+<!-- package.json 配置： -->
+"lint-staged": {
+  "src/**/*.{js,jsx,ts,tsx,vue,md}": "eslint --config .eslintrc.js",
+  "*.{ts,tsx,js,json,html,yml,css,less,md}": "prettier --write"
+},
+```
+
+## 根目录创建** .commitlintrc.js**
+
+```
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'type-enum': [
+      2,
+      'always',
+      ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore'],
+    ],
+    'subject-full-stop': [0, 'never'],
+    'subject-case': [0, 'never'],
+  },
+}
+```
