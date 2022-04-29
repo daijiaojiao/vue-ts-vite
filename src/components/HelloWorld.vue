@@ -1,9 +1,8 @@
 <script setup lang="ts">
-// import { ref } from "vue";
-
 defineProps<{ msg: string }>()
 
 const count = ref(0)
+const obj = reactive({ a: 1 })
 </script>
 
 <template>
@@ -31,6 +30,7 @@ const count = ref(0)
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+  <p>{{ obj.a }}</p>
 </template>
 
 <style scoped>
