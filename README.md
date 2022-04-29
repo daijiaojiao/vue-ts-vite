@@ -1,3 +1,5 @@
+# 这个一个 vue3+vite+ts 的项目模板
+
 # 使用 vite 指定模板下载
 
 ```
@@ -107,4 +109,22 @@ module.exports = {
     'subject-case': [0, 'never'],
   },
 }
+```
+
+# 配置 sass
+
+```
+pnpm install sass
+```
+
+# 设置特定的包管理器
+
+```
+<!-- 在package.json文件中添加packageManager -->
+```
+
+# 指定 node 版本号
+
+```
+<!-- 在项目根目录添加.nvmrc文件，并指定node版本 -->
 ```

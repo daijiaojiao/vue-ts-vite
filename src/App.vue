@@ -6,8 +6,16 @@
 
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-  <a-button type="primary">Add</a-button>
+  <HelloWorld
+    msg="Hello Vue 3 + TypeScript + Vite + husky + eslint + ant-design-vue + router4"
+  />
+  <router-link to="/page1" class="link">
+    <a-button type="primary">goto page1</a-button>
+  </router-link>
+  <router-link to="/page2">
+    <a-button type="primary">goto page2</a-button>
+  </router-link>
+  <router-view></router-view>
 </template>
 
 <style>
@@ -18,5 +26,10 @@
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+</style>
+<style lang="scss" scoped>
+.link {
+  margin-right: 8px;
 }
 </style>
