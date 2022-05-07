@@ -1,4 +1,4 @@
-# 这个一个 vue3+vite+ts 的项目模板
+# 这是一个 vue3+vite+ts 的项目模板
 
 # 使用 vite 指定模板下载
 
