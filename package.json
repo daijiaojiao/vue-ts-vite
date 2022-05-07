@@ -15,6 +15,7 @@
     "*.{ts,tsx,js,json,html,yml,css,less,md}": "prettier --write"
   },
   "dependencies": {
+    "@vueuse/core": "^8.4.2",
     "ant-design-vue": "^3.2.2",
     "sass": "^1.51.0",
     "vue": "^3.2.25",

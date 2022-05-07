@@ -48,6 +48,12 @@ import "ant-design-vue/dist/antd.css";
 pnpm i -D unplugin-auto-import
 ```
 
+# 安装 vueuse
+
+```
+pnpm i @vueuse/core
+```
+
 # 配置 eslint pretter
 
 ```
