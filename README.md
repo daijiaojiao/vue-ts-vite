@@ -134,3 +134,22 @@ pnpm install sass
 ```
 <!-- 在项目根目录添加.nvmrc文件，并指定node版本 -->
 ```
+# 配置stylelelint
+```
+ pnpm install --save-dev stylelint-config-recess-order postcss-scss postcss-html stylelint-config-recommended-vue stylelint-config-standard-scss stylelint
+ ```
+ 配置stylelint.config.js文件
+ ```
+ module.exports = {
+  extends: [
+    'stylelint-config-standard-scss',
+    'stylelint-config-recommended-vue/scss',
+    'stylelint-config-recess-order',
+  ],
+  rules: {
+    // kebab-case
+    'selector-class-pattern': null,
+  },
+}
+
+ ```
