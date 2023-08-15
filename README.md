@@ -135,6 +135,14 @@ pnpm install sass
 <!-- 在项目根目录添加.nvmrc文件，并指定node版本 -->
 ```
 # 配置stylelelint
+postcss-html是一个postcss插件，它可以将html文件中的样式块中的CSS代码提取出来进行处理，这样可以使CSS代码更加集中、维护更简单。
+'stylelint-config-standard', // 配置stylelint拓展插件
+'stylelint-config-html/vue', // 配置 vue 中 template 样式格式化
+'stylelint-config-standard-scss', // 配置stylelint scss插件
+'stylelint-config-recommended-vue/scss', // 配置 vue 中 scss 样式格式化
+'stylelint-config-recess-order', // 配置stylelint css属性书写顺序插件,
+'stylelint-config-prettier', // 配置stylelint和prettier兼容
+
 ```
  pnpm install --save-dev stylelint-config-recess-order postcss-scss postcss-html stylelint-config-recommended-vue stylelint-config-standard-scss stylelint
  ```
